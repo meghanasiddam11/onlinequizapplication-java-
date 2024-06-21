@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class QuizApplication {
+    private static final String[][] questions = {
+        {"What is the capital of France?", "Paris", "London", "Berlin", "Rome"},
+        {"What is the largest planet in our solar system?", "Earth", "Saturn", "Jupiter", "Uranus"},
+        {"What is the smallest country in the world?", "Vatican City", "Monaco", "Nauru", "Tuvalu"},
+        // Add more questions here
+    };
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int score = 0;
+
+        for (int i = 0; i < questions.length; i++) {
+            System.out.println("Question " + (i + 1) + ": " + questions[i][0]);
+            System.out.println("A) " + questions[i][1]);
+            System.out.println("B) " + questions[i][2]);
+            System.out.println("C) " + questions[i][3]);
+            System.out.println("D) " + questions[i][4]);
+
+            System.out.print("Enter your answer (A, B, C, or D): ");
+            char answer = scanner.next().toUpperCase().charAt(0);
+
+            if (answer == 'A') {
+                if (questions[i][1].equals(questions[i][0].split(" ")[questions[i][0].split(" ").length - 1])) {
+                    score++;
+                    System.out.println("Correct!");
+                } else {
+                    System.out.println("Incorrect. The correct answer is " + getCorrectAnswer(questions[i]));
+                }
+            } else if (answer == 'B') {
+                if (questions[i][2].equals(questions[i][0].split(" ")[questions[i][0].split(" ").length - 1])) {
+                    score++;
+                    System.out.println("Correct!");
+                } else {
+                    System.out.println("Incorrect. The correct answer is " + getCorrectAnswer(questions[i]));
+                }
+            } else if (answer == 'C') {
+                if (questions[i][3].equals(questions[i][0].split(" ")[questions[i][0].split(" ").length - 1])) {
+                    score++;
+                    System.out.println("Correct!");
+                } else {
+                    System.out.println("Incorrect. The correct answer is " + getCorrectAnswer(questions[i]));
+                }
+            } else if (answer == 'D') {
+                if (questions[i][4].equals(questions[i][0].split(" ")[questions[i][0].split(" ").length - 1])) {
+                    score++;
+                    System.out.println("Correct!");
+                } else {
+                    System.out.println("Incorrect. The correct answer is " + getCorrectAnswer(questions[i]));
+                }
+            } else {
+                System.out.println("Invalid input. Please enter A, B, C, or D.");
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("Quiz complete! Your final score is " + score + " out of " + questions.length);
+    }
+
+    private static String getCorrectAnswer(String[] question) {
+        for (int i = 1; i < question.length; i++) {
+            if (question[0].split(" ")[question[0].split(" ").length - 1].equals(question[i])) {
+                if (i == 1) {
+                    return "A) " + question[i];
+                } else if (i == 2) {
+                    return "B) " + question[i];
+                } else if (i == 3) {
+                    return "C) " + question[i];
+                } else {
+                    return "D) " + question[i];
+                }
+            }
+        }
+        return "";
+    }
+}
